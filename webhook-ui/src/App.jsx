@@ -60,7 +60,6 @@ export default function App() {
   );
 }
 
-/* ---------- Helpers ---------- */
 
 function formatEvent(event) {
   const time = formatUTCTime(event.timestamp);
