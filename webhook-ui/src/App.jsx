@@ -26,10 +26,10 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center p-6">
+    <div className="min-h-screen bg-blue-400 flex justify-center p-6">
       <div className="w-full max-w-3xl bg-white rounded-xl shadow-md p-6">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-xl font-semibold text-gray-800">
+          <h1 className="text-3xl text-gray-800 font-sans font-semibold">
             GitHub Repository Activity
           </h1>
 
