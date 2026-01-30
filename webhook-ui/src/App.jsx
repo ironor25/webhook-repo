@@ -15,7 +15,7 @@ export default function App() {
     } catch (err) {
       console.error("Failed to fetch events", err);
     } finally {
-      setTimeout(() => setLoading(false), 500); // smooth loader
+      setTimeout(() => setLoading(false), 400);
     }
   };
 
@@ -29,7 +29,7 @@ export default function App() {
     <div className="min-h-screen bg-blue-400 flex justify-center p-6">
       <div className="w-full max-w-3xl bg-white rounded-xl shadow-md p-6">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl text-gray-800 font-sans font-semibold">
+          <h1 className="text-3xl font-semibold text-gray-800">
             GitHub Repo Activity Tracker
           </h1>
 
@@ -60,8 +60,10 @@ export default function App() {
   );
 }
 
+/* ---------- Helpers ---------- */
+
 function formatEvent(event) {
-  const time = new Date(event.timestamp).toUTCString();
+  const time = formatUTCTime(event.timestamp);
 
   if (event.action === "PUSH") {
     return `"${event.author}" pushed to "${event.to_branch}" on ${time}`;
@@ -76,4 +78,34 @@ function formatEvent(event) {
   }
 
   return null;
+}
+
+function formatUTCTime(timestamp) {
+  const date = new Date(timestamp);
+
+  const day = date.toLocaleString("en-GB", {
+    day: "numeric",
+    timeZone: "UTC",
+  });
+
+  const dayNum = Number(day);
+  const suffix =
+    dayNum % 10 === 1 && dayNum !== 11
+      ? "st"
+      : dayNum % 10 === 2 && dayNum !== 12
+      ? "nd"
+      : dayNum % 10 === 3 && dayNum !== 13
+      ? "rd"
+      : "th";
+
+  const rest = date.toLocaleString("en-GB", {
+    month: "long",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "UTC",
+  });
+
+  return `${day}${suffix} ${rest.replace(",", " -")} UTC`;
 }
