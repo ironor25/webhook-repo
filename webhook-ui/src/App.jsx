@@ -30,7 +30,7 @@ export default function App() {
       <div className="w-full max-w-3xl bg-white rounded-xl shadow-md p-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl text-gray-800 font-sans font-semibold">
-            GitHub Repository Activity
+            GitHub Repo Activity Tracker
           </h1>
 
           {loading && (
